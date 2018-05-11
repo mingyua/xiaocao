@@ -43,9 +43,9 @@ class Goods extends Auth{
 			$goods = new Gods();
 			
 			if(isset($post['id'])){
-				$result=$goods->allowField(true)->save($post,['id'=>$post['id']]);
+				$result=$goods->allowField(true)->validate('Sp.edit')->save($post,['id'=>$post['id']]);
 		   		if(false === $result){
-				    $back=['msg'=>'修改失败','status'=>2];
+				    $back=['msg'=>$goods->getError(),'status'=>2];
 				}else{	 
 					$data['dizhi']=$post['sptpImg'];
 					$data['name']=$post['name'];
@@ -64,9 +64,9 @@ class Goods extends Auth{
 			}else{
 				$post['shijian']=date('Y-m-d H:i:s',time());
 				
-				$result=$goods->allowField(true)->save($post);
+				$result=$goods->allowField(true)->validate('Sp.add')->save($post);
 		   		if(false === $result){
-				    $back=['msg'=>'添加失败','status'=>2];
+				    $back=['msg'=>$goods->getError(),'status'=>2];
 				}else{	
 					$gId = Db::name('xc_shangpin')->getLastInsID();
 					$data['dizhi']=$post['sptpImg'];
@@ -74,7 +74,7 @@ class Goods extends Auth{
 					$data['name']=$post['name'];
 					if($post['sptpImg']!=='0'){model('Goodsimg')->allowField(true)->save($data);}  
 					  		
-			   		$back=['msg'=>'添加成功'.$post['sptpImg'],'status'=>1];
+			   		$back=['msg'=>'添加成功','status'=>1];
 			   	}				
 			}
 			return $back;
@@ -232,18 +232,21 @@ class Goods extends Auth{
 			
 			$id=isset($post['id']);
 			
-			if($id>0){					
-					if($sppp->allowField(true)->save($post,['ID' => $post['id']])){			
-						$back=['msg'=>'修改成功','status'=>1];
+			if($id>0){	
+				$result=$sppp->allowField(true)->validate('Sppp.edit')->save($post,['ID' => $post['id']]);				
+					if(false === $result){	
+						$back=['msg'=>$sppp->getError(),'status'=>2];
 					}else{
-						$back=['msg'=>'修改失败','status'=>0];
+						$back=['msg'=>'修改成功','status'=>1];
 					}			     						
 				
 			}else{
-					if($sppp->allowField('name')->save($post)){
-						$back=['msg'=>'添加成功','status'=>1];
+				$result=$sppp->allowField(true)->validate('Sppp.add')->save($post);				
+					if(false === $result){	
+					
+						$back=['msg'=>$sppp->getError(),'status'=>2];
 					}else{
-						$back=['msg'=>'添加失败','status'=>0];
+						$back=['msg'=>'添加成功','status'=>1];
 					}			     
 							
 				

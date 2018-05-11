@@ -4,15 +4,15 @@
 		<form class="layui-form layui-form-pane">
 			<div class="layui-form-item">
 				<div class="layui-inline">
-			      <label class="layui-form-label">店面名称</label>
+			      <label class="layui-form-label"><font color="red" size="+2">*</font>店面名称</label>
 			      <div class="layui-input-inline">
 			        <input id="store_name" name="store_name" lay-verify="required" autocomplete="off" placeholder="请输入店面名称" class="layui-input" type="text" value="{$info.store_name|default=''}">
 			      </div>
 			    </div>
 			    <div class="layui-inline">
-			      <label class="layui-form-label">所属企业</label>
+			      <label class="layui-form-label"><font color="red" size="+2">*</font>所属企业</label>
 			      <div class="layui-input-inline">
-				      	<input id="stname" name="qiyue" lay-verify="required" autocomplete="off" placeholder="请输入店面名称" class="layui-input" type="text" {notempty name="$info.TEL"}value="{$info.TEL,'store_name'|getuserinfo}"{/notempty} >
+				      	<input id="stname" name="qiyue" lay-verify="required" autocomplete="off" placeholder="输入查找后选择企业" class="layui-input" type="text" {notempty name="$info.TEL"}value="{$info.TEL,'store_name'|getuserinfo}"{/notempty} >
 			      	<div id="word"></div>
 			      </div>
 			    </div>							
@@ -20,15 +20,15 @@
 
 			<div class="layui-form-item">
 				<div class="layui-inline">
-			      <label class="layui-form-label">门店账号</label>
+			      <label class="layui-form-label"><font color="red" size="+2">*</font>门店账号</label>
 			      <div class="layui-input-inline">
-			        <input id="TEL" name="TEL" lay-verify="required|tel" {notempty name="$info.TEL"}disabled{/notempty} autocomplete="off" placeholder="请输入企业密码" class="layui-input" type="text" value="{$info.TEL|default=''}">
+			        <input id="TEL" name="TEL" lay-verify="required|tel" {notempty name="$info.TEL"}disabled{/notempty} autocomplete="off" placeholder="请输入手机号码，用于店铺登录" class="layui-input" type="text" value="{$info.TEL|default=''}">
 			      </div>
 			    </div>
 				<div class="layui-inline">
-			      <label class="layui-form-label">门店密码</label>
+			      <label class="layui-form-label">{empty name="info.TEL"}<font color="red" size="+2">*</font>{/empty}门店密码</label>
 			      <div class="layui-input-inline">
-			        <input name="Store_pass" {empty name="$info.Store_pass"}lay-verify="required|pass"{/empty} autocomplete="off" placeholder="请输入企业密码" class="layui-input" type="text" value="">
+			        <input name="Store_pass" {empty name="$info.Store_pass"}lay-verify="required|pass"{/empty} autocomplete="off" placeholder="请输入门店密码" class="layui-input" type="text" value="">
 			      </div>
 			    </div>
 
@@ -60,17 +60,17 @@
 				</div>
 			</div>
 			<div class="layui-form-item"> <label class="layui-form-label">门店地址</label>
-				<div class="layui-input-block"> <input id="Address" name="Address" autocomplete="off" lay-verify="required"  placeholder="请输入企业地址" class="layui-input" type="text" value="{$info.Address|default=''}"> </div>
+				<div class="layui-input-block"> <input id="Address" name="Address" autocomplete="off" lay-verify=""  placeholder="请输入门店地址" class="layui-input" type="text" value="{$info.Address|default=''}"> </div>
 			</div>
 			<div class="layui-form-item">
 				<div class="layui-inline">
-			      <label class="layui-form-label">最大终端数</label>
+			      <label class="layui-form-label"><font color="red" size="+2">*</font>终端数</label>
 			      <div class="layui-input-inline">
 			        <input name="client_number" lay-verify="required" autocomplete="off" placeholder="收银同时在线最大终端数" class="layui-input" type="text" value="{$info.client_number|default=''}">
 			      </div>
 			    </div>
 			    <div class="layui-inline">
-			      <label class="layui-form-label">邮箱</label>
+			      <label class="layui-form-label"><font color="red" size="+2">*</font>邮箱</label>
 			      <div class="layui-input-inline">
 			        <input id="email" name="email" lay-verify="email" autocomplete="off" placeholder="请输入邮箱" class="layui-input" type="text" value="{$info.email|default=''}">
 			      </div>
@@ -104,7 +104,7 @@
 			</div>
 			
 			<div class="layui-form-item">
-				<div class="layui-input-block text-center"><a class="layui-btn" lay-submit lay-filter="send" dataurl="{:URL('shop/addshop')}">立即提交</a> <button type="reset" class="layui-btn layui-btn-primary">重置</button> </div>
+				<div class="layui-input-block text-center"><a class="layui-btn" lay-submit lay-filter="send" dataurl="{:URL('shop/addshop')}">立即提交</a>  </div>
 			</div>
 				<input type="hidden" name="user_code" id="user_code" value="{$info.user_code|default=''}" />
 				<input type="hidden" name="number_code" id="number_code" value="{$info.number_code|default=''}" />

@@ -6,13 +6,13 @@
 			<div class="layui-col-sm9">
 			<div class="layui-form-item">
 				<div class="layui-inline">
-			      <label class="layui-form-label">商品名称</label>
+			      <label class="layui-form-label"><font color="red" size="+2">*</font>商品名称</label>
 			      <div class="layui-input-inline">
 			        <input id="txtChinese" name="name" onKeyUp="query()" lay-verify="required" autocomplete="off" placeholder="请输入商品名称" class="layui-input" type="text" value="{$info.name|default=''}">
 			     </div>
 			    </div>
 			    <div class="layui-inline">
-			      <label class="layui-form-label">商品品牌</label>
+			      <label class="layui-form-label"><font color="red" size="+2">*</font>商品品牌</label>
 			      <div class="layui-input-inline">
 				      	<input id="autoload" dataurl="{:URL('goods/getpp')}" lay-verify="required" autocomplete="off" placeholder="请输入商品品牌" class="layui-input" type="text" {notempty name="$info.shangpinppid"}value="{$info.shangpinppid|getpp|default=''}"{/notempty} >
 			      		<div class="autobox"></div><input type="hidden" name="shangpinppid" id="shangpinppid" value="{$info.shangpinppid|default=''}" />
@@ -23,13 +23,13 @@
 
 			<div class="layui-form-item">
 				<div class="layui-inline">
-			      <label class="layui-form-label">商品规格</label>
+			      <label class="layui-form-label"><font color="red" size="+2">*</font>商品规格</label>
 			      <div class="layui-input-inline">
 			        <input name="shangpingg" lay-verify="required" autocomplete="off" placeholder="请输入商品规格" class="layui-input" type="text" value="{$info.shangpingg|default=''}">
 			      </div>
 			    </div>
 				<div class="layui-inline">
-			      <label class="layui-form-label">商品分类</label>
+			      <label class="layui-form-label"><font color="red" size="+2">*</font>商品分类</label>
 			      <div class="layui-input-inline">
 			          	<input id="autoload" dataurl="{:URL('goods/getkinds')}" lay-verify="required" autocomplete="off" placeholder="请输入商品分类" class="layui-input" type="text" {notempty name="$info.shangpinflid"}value="{$info.shangpinflid|getfl|default=''}"{/notempty}>
 						<div class="autobox"></div><input type="hidden" name="shangpinflid" id="shangpinflid" value="{$info.shangpinflid|default=''}" />
@@ -40,14 +40,14 @@
 			</div>			
 			<div class="layui-form-item">
 				<div class="layui-inline">
-			      <label class="layui-form-label">商品条形码</label>
+			      <label class="layui-form-label"><font color="red" size="+2">*</font>商品条形码</label>
 			      <div class="layui-input-inline">
-			        <input id="code" name="code"  autocomplete="off" placeholder="请输入商品条形码" class="layui-input" type="text" value="{$info.code|default=''}">
+			        <input id="code" name="code" lay-verify="required"  autocomplete="off" placeholder="请输入商品条形码" class="layui-input" type="text" value="{$info.code|default=''}">
 			      </div>
 			    </div>
 
 			    <div class="layui-inline">
-			      <label class="layui-form-label">商品单位</label>
+			      <label class="layui-form-label"><font color="red" size="+2">*</font>商品单位</label>
 			      <div class="layui-input-inline">
 			        <input id="autoload" dataurl="{:URL('goods/getdw')}" lay-verify="required" autocomplete="off" placeholder="请输入商品单位" class="layui-input" type="text" {notempty name="$info.danwei"} value="{$info.danwei|getdw|default=''}"{/notempty}>
 			      	<div class="autobox"></div><input type="hidden" name="danwei" id="danwei" value="{$info.danwei|default=''}" />
@@ -58,7 +58,7 @@
 				
 			      <label class="layui-form-label">生产厂家</label>
 			      <div class="layui-input-block">
-			        <input name="changjia" lay-verify="required" autocomplete="off" placeholder="厂家" class="layui-input" type="text" value="{$info.changjia|default=''}">			      	
+			        <input name="changjia" lay-verify="" autocomplete="off" placeholder="厂家" class="layui-input" type="text" value="{$info.changjia|default=''}">			      	
 			      </div>
 			    
 
@@ -66,16 +66,16 @@
 			<div class="layui-form-item"> 
 				
 				<div class="layui-inline">
-			      <label class="layui-form-label">保质期</label>
+			      <label class="layui-form-label"><font color="red" size="+2">*</font>保质期</label>
 			      <div class="layui-input-inline">
-			        <input name="baozhiq" lay-verify="required" autocomplete="off" placeholder="保质期" class="layui-input" type="text" value="{$info.baozhiq|default=''}">
+			        <input name="baozhiq" lay-verify="required|number" autocomplete="off" placeholder="保质期" class="layui-input" type="text" value="{$info.baozhiq|default=''}">
 			      	<label class="lableright">天</label>
 			      </div>
 			    </div>
 				<div class="layui-inline">
-			      <label class="layui-form-label">数量</label>
+			      <label class="layui-form-label"><font color="red" size="+2">*</font>数量</label>
 			      <div class="layui-input-inline">
-			        <input name="shuliang" lay-verify="required" autocomplete="off" placeholder="最小单位" class="layui-input" type="text" value="{$info.shuliang|default=''}">			      	
+			        <input name="shuliang" lay-verify="required|number" autocomplete="off" placeholder="最小单位" class="layui-input" type="text" value="{$info.shuliang|default=''}">			      	
 			      </div>
 			    </div>
 			</div>
@@ -94,13 +94,13 @@
 			</div>
 			<div class="layui-col-sm3 text-center">
 				<div class="layui-form-item">
-			   <a href="javascript:;" class="sptp upimgbox" onclick="upimg('#sptp');"  title="商品图片">{notempty name="$info.id"}<img src="__ROOT__{$info.id|getsptp}" width="100%" >{else /}商品图片{/notempty}</a>
-			   <input type="hidden" id="sptpImg" lay-verify="fileimg" name="sptpImg" {notempty name="$info.id"}value="{$info.id|getsptp|default='0'}" {/notempty}/>
+			   <a href="javascript:;" id="sptpss" class="sptp upimgbox" onclick="upimg('#sptp');"  title="商品图片">{notempty name="$info.id"}<img src="__ROOT__{$info.id|getsptp}" width="100%" >{else /}商品图片{/notempty}</a>
+			   <input type="hidden" id="sptpImg" lay-verify="filetu" name="sptpImg" {notempty name="$info.id"}value="{$info.id|getsptp|default='0'}" {/notempty}/>
 				</div>
 			</div>
 			
 			<div class="layui-form-item">
-				<div class="layui-input-block text-center"><a class="layui-btn" lay-submit lay-filter="send" dataurl="{:URL('goods/addgoods')}">立即提交</a> <button type="reset" class="layui-btn layui-btn-primary">重置</button> </div>
+				<div class="layui-input-block text-center"><a class="layui-btn" lay-submit lay-filter="send" dataurl="{:URL('goods/addgoods')}">立即提交</a>  </div>
 			</div>
 				<input type="hidden" name="pinyinm" id="py" value="{$info.pinyinm|default=''}" />				
 				{notempty name="info.id"}
@@ -127,7 +127,8 @@ $('body').on('keyup','#autoload',function(){
 			success:function(res){
 				_this.next().empty().show();				
 				if(res.data==''){
-					_this.next().append('<div class="error">没有发现数据  "' + keywords + '"</div>');
+					_this.val('');
+					_this.next().append('<div class="error">没有数据  "' + keywords + '"请先添加</div>');
 				}
 				
 				$.each(res.data, function(){

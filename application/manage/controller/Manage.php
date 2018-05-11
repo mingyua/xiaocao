@@ -5,7 +5,8 @@ use think\Request;
 use think\Db;
 class Manage extends Auth
 {
-	public function index() {	
+	public function index() {
+		
 		$admin=model('Manage');		
 		$where['id']=array("gt",0);		
 		$data=$admin->where($where)->order('id ASC')->paginate(14);
@@ -19,7 +20,7 @@ class Manage extends Auth
             $post = $this->request->post(); 
 			$role=model('Role');
 			
-			$id=$post['id'];
+			$id=input('id');
 			$post['Role_name']=$post['name'];
 			if($id>0){					
 					if($role->allowField(true)->save($post,['ID' => $post['id']])){			
@@ -186,15 +187,25 @@ class Manage extends Auth
 
 			$id=input('id');
 			$user = db("admin_user"); // 实例化User对象
-
-			if($user->where("id=".$id)->delete()){
-				$back=['msg'=>'删除成功','status'=>1];	
-				
+			if($id=='1'){
+				$back=['msg'=>'当前用户不能删除！','status'=>2];	
 			}else{
-				$back=['msg'=>'删除失败','status'=>2];	
-				
+				if($user->where("id=".$id)->delete()){
+					if($id==session('uid')){
+						session(null);
+						
+						$back=['msg'=>'当前登录账户已被删除，正在退出...','status'=>1,'url'=>URL('login/index')];
+					}else{
+						
+						$back=['msg'=>'删除成功','status'=>1];
+					}
+					
+					
+				}else{
+					$back=['msg'=>'删除失败','status'=>2];	
+					
+				}
 			}
-
 			return $back;
 						
 		}

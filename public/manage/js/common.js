@@ -74,6 +74,13 @@ layui.use(['laydate', 'form', 'layer','table', 'carousel', 'upload', 'element'],
 				layer.msg(res.msg, {
 					icon: res.status
 				});
+				if(res.status=='1'){
+					setTimeout(function(){
+					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					parent.layer.close(index); 	
+					  parent.location.reload();
+					},2000);
+				}
 			},
 			error: function(res) {
 				layer.msg('网络出错！', {
@@ -183,6 +190,15 @@ layui.use(['laydate', 'form', 'layer','table', 'carousel', 'upload', 'element'],
     zh:[/^[\u4E00-\u9FA5]{1,6}$/,'必须为中文'],
     num:[/^[0-9]{1,11}$/,'只能输入数字,最多11位'],
     fileimg:[/\S/,'必须上传证件'],
+    filetu:function(s){
+    	var patrn=/\S/;
+    	if (!patrn.exec(s)){
+    		$('.sptp').html('<font color="red" size="+2">必须上传</font>');   	
+    		return '必须上传商品图片';
+    	}else{
+		return true;
+		}
+    },
   });	
 });
 $(function() {
@@ -230,8 +246,15 @@ $(function() {
 					layer.msg(res.msg, {
 						icon: res.status
 					});
-					dd.parents("tr").remove();
-					dd.parents(".brandbox").remove();
+					if(res.url){
+						setTimeout(function(){
+							top.location.href=url;
+						},2000);
+					}
+					if(res.status=='1'){
+						dd.parents("tr").remove();
+						dd.parents(".brandbox").remove();
+					}
 				},
 				error: function(res) {
 					layer.msg('网络出错！', {
@@ -285,6 +308,12 @@ $(function() {
 					layer.msg(res.msg, {
 						icon: res.status
 					});
+				if(res.status=='1'){
+					setTimeout(function(){
+						window.location.reload();
+					},2000);
+				}
+					
 					
 				},
 				error: function(res) {
