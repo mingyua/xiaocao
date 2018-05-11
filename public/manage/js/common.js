@@ -74,6 +74,7 @@ layui.use(['laydate', 'form', 'layer','table', 'carousel', 'upload', 'element'],
 				layer.msg(res.msg, {
 					icon: res.status
 				});
+<<<<<<< HEAD
 				if(res.status=='1'){
 					setTimeout(function(){
 					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
@@ -81,6 +82,8 @@ layui.use(['laydate', 'form', 'layer','table', 'carousel', 'upload', 'element'],
 					  parent.location.reload();
 					},2000);
 				}
+=======
+>>>>>>> 61ca9f435e5181d13ed756c8125e118a54f205f9
 			},
 			error: function(res) {
 				layer.msg('网络出错！', {
@@ -190,6 +193,7 @@ layui.use(['laydate', 'form', 'layer','table', 'carousel', 'upload', 'element'],
     zh:[/^[\u4E00-\u9FA5]{1,6}$/,'必须为中文'],
     num:[/^[0-9]{1,11}$/,'只能输入数字,最多11位'],
     fileimg:[/\S/,'必须上传证件'],
+<<<<<<< HEAD
     filetu:function(s){
     	var patrn=/\S/;
     	if (!patrn.exec(s)){
@@ -199,6 +203,8 @@ layui.use(['laydate', 'form', 'layer','table', 'carousel', 'upload', 'element'],
 		return true;
 		}
     },
+=======
+>>>>>>> 61ca9f435e5181d13ed756c8125e118a54f205f9
   });	
 });
 $(function() {
@@ -246,6 +252,7 @@ $(function() {
 					layer.msg(res.msg, {
 						icon: res.status
 					});
+<<<<<<< HEAD
 					if(res.url){
 						setTimeout(function(){
 							top.location.href=url;
@@ -255,6 +262,10 @@ $(function() {
 						dd.parents("tr").remove();
 						dd.parents(".brandbox").remove();
 					}
+=======
+					dd.parents("tr").remove();
+					dd.parents(".brandbox").remove();
+>>>>>>> 61ca9f435e5181d13ed756c8125e118a54f205f9
 				},
 				error: function(res) {
 					layer.msg('网络出错！', {
@@ -308,12 +319,15 @@ $(function() {
 					layer.msg(res.msg, {
 						icon: res.status
 					});
+<<<<<<< HEAD
 				if(res.status=='1'){
 					setTimeout(function(){
 						window.location.reload();
 					},2000);
 				}
 					
+=======
+>>>>>>> 61ca9f435e5181d13ed756c8125e118a54f205f9
 					
 				},
 				error: function(res) {
