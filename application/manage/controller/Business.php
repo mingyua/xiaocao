@@ -86,7 +86,7 @@ class Business extends Auth
     {
     	
     $id=input('tel');
-    $list=db('store')->where('TEL','eq',$id)->select();
+    $list=db('store')->where('user_code','eq',$id)->select();
     $this->assign('list',$list);
 	return $this->fetch();
 	}	

@@ -97,7 +97,7 @@ class Manage extends Auth
 					
 				}
 			}else{
-				$back=['msg'=>'提交数据为空','status'=>2];	
+				$back=['msg'=>'操作成功','status'=>1];	
 			}		
 			
 			

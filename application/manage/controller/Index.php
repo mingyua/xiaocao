@@ -14,7 +14,7 @@ class Index extends Auth
     }
     public function right()
     {
-    $this->view->engine->layout(false); 
+    
 
 	return $this->fetch();
     }

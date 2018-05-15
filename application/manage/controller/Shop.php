@@ -121,7 +121,54 @@ class Shop extends Auth
    		$back=['msg'=>'操作成功','status'=>1];
    		}
 		return $back;
-	}		
+	}
+	
+	public function payset(){
+		if($this->request->post()){
+			$post = $this->request->post(); 
+			if($post['edit']){
+				$wx=Db::name('store_number')->where(['store_code'=>['eq',$post['store_code']],'Keys'=>['eq','WXKey']])->update(['KeyValues' => $post['WXKey'],'remark'=>$post['remark']]);
+				$pay=Db::name('store_number')->where(['store_code'=>['eq',$post['store_code']],'Keys'=>['eq','ZFBKey']])->update(['KeyValues' => $post['ZFBKey'],'remark'=>$post['remark']]);
+				if(false === $wx || false === $pay){
+				    $back=['msg'=>'操作失败','status'=>2];
+				}else{	       		
+			   		$back=['msg'=>'操作成功','status'=>1];
+		   		}				
+				
+			}else{
+				$data = [
+				    ['user_code' => $post['user_code'], 'store_code' => $post['store_code'],'type_flag'=>'4','Keys'=>'WXKey','KeyValues'=>$post['WXKey'],'remark'=>$post['remark']],
+				    ['user_code' => $post['user_code'], 'store_code' => $post['store_code'],'type_flag'=>'4','Keys'=>'ZFBKey','KeyValues'=>$post['ZFBKey'],'remark'=>$post['remark']]				    
+				];
+				
+				$result=model('Pay')->allowField(true)->saveall($data);	
+				//dump(model('Pay')->getLastsql());
+				if(false === $result){
+				    $back=['msg'=>'操作失败','status'=>2];
+				}else{	       		
+			   		$back=['msg'=>'操作成功','status'=>1];
+		   		}
+			}
+			return $back;
+		}
+		
+		$map['user_code']=input('ucode');
+		$map['store_code']=input('dpid');
+		$dppayset=db('store_number')->where($map)->select();
+		$newarr=[];
+		foreach($dppayset as $k=>$v){
+			$newarr['store_code']=$v['store_code'];			
+			$newarr[$v['Keys']]=$v['KeyValues'];			
+			$newarr['remark']=$v['remark'];			
+		}
+		
+		$this->assign('info',$newarr);
+		$this->assign('ucode',input('ucode'));
+		$this->assign('scode',input('dpid'));
+		
+		return $this->fetch();
+	}
+			
 	}
 
 ?>

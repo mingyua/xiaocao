@@ -59,7 +59,7 @@ layui.use(['laydate', 'form', 'layer','table', 'carousel', 'upload', 'element'],
     });
   });
 	form.on('submit(send)', function(data) {
-		var url = $(this).attr('dataurl');
+		var url = $(this).attr('dataurl'),_this=$(this);
 		//ckaccess(url);
 		//layer.msg(JSON.stringify(data.field),{time:20000});exit();
 		$.ajax({
@@ -67,14 +67,18 @@ layui.use(['laydate', 'form', 'layer','table', 'carousel', 'upload', 'element'],
 			url: url,
 			data: data.field,
 			beforeSend: function(){
-				layer.msg('数据正在提交中...',{icon:16});
+				_this.removeAttr('lay-submit');
+				_this.html('数据正在提交中...');
+				//layer.msg('数据正在提交中...',{icon:16});
 		    },
 			success: function(res) {
 				//alert(JSON.stringify(res));return false;
 				layer.msg(res.msg, {
 					icon: res.status
 				});
-<<<<<<< HEAD
+				_this.attr('lay-submit','submit');
+				_this.html('立即提交');
+
 				if(res.status=='1'){
 					setTimeout(function(){
 					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
@@ -82,10 +86,11 @@ layui.use(['laydate', 'form', 'layer','table', 'carousel', 'upload', 'element'],
 					  parent.location.reload();
 					},2000);
 				}
-=======
->>>>>>> 61ca9f435e5181d13ed756c8125e118a54f205f9
+				
 			},
 			error: function(res) {
+				_this.attr('lay-submit','submit');
+				_this.html('立即提交');
 				layer.msg('网络出错！', {
 					icon: 2
 				});
@@ -193,18 +198,13 @@ layui.use(['laydate', 'form', 'layer','table', 'carousel', 'upload', 'element'],
     zh:[/^[\u4E00-\u9FA5]{1,6}$/,'必须为中文'],
     num:[/^[0-9]{1,11}$/,'只能输入数字,最多11位'],
     fileimg:[/\S/,'必须上传证件'],
-<<<<<<< HEAD
     filetu:function(s){
     	var patrn=/\S/;
     	if (!patrn.exec(s)){
     		$('.sptp').html('<font color="red" size="+2">必须上传</font>');   	
     		return '必须上传商品图片';
-    	}else{
-		return true;
-		}
+    	}
     },
-=======
->>>>>>> 61ca9f435e5181d13ed756c8125e118a54f205f9
   });	
 });
 $(function() {
@@ -252,7 +252,6 @@ $(function() {
 					layer.msg(res.msg, {
 						icon: res.status
 					});
-<<<<<<< HEAD
 					if(res.url){
 						setTimeout(function(){
 							top.location.href=url;
@@ -262,10 +261,6 @@ $(function() {
 						dd.parents("tr").remove();
 						dd.parents(".brandbox").remove();
 					}
-=======
-					dd.parents("tr").remove();
-					dd.parents(".brandbox").remove();
->>>>>>> 61ca9f435e5181d13ed756c8125e118a54f205f9
 				},
 				error: function(res) {
 					layer.msg('网络出错！', {
@@ -319,15 +314,12 @@ $(function() {
 					layer.msg(res.msg, {
 						icon: res.status
 					});
-<<<<<<< HEAD
 				if(res.status=='1'){
 					setTimeout(function(){
 						window.location.reload();
 					},2000);
 				}
 					
-=======
->>>>>>> 61ca9f435e5181d13ed756c8125e118a54f205f9
 					
 				},
 				error: function(res) {
